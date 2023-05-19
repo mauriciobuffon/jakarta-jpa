@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence/orm https://jakarta.ee/xml/ns/persistence/orm/orm_3_1.xsd"
+    version="3.1">
+
+    <access>FIELD</access>
+
+    <entity class="br.dev.webit.desktop.model.Department">
+        <table name="departments"></table>
+        <attributes>
+            <id name="code">
+                <column length="4" />
+            </id>
+
+            <basic name="name" optional="false">
+                <column length="40" unique="true" />
+            </basic>
+
+            <version name="version">
+                <column nullable="false" />
+            </version>
+
+            <one-to-many name="employees">
+                <join-table name="department_employees">
+                    <join-column name="department_code" />
+                    <inverse-join-column name="employee_id" />
+                </join-table>
+            </one-to-many>
+
+            <one-to-one name="manager">
+                <join-table name="department_manager">
+                    <join-column name="department_code" />
+                    <inverse-join-column name="employee_id" />
+                </join-table>
+            </one-to-one>
+
+        </attributes>
+    </entity>
+
+    <entity class="br.dev.webit.desktop.model.Employee">
+        <table name="employees"></table>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY" />
+            </id>
+
+            <basic name="firstName" optional="false">
+                <column name="first_name" length="14" />
+            </basic>
+            <basic name="lastName" optional="false">
+                <column name="last_name" length="16" />
+            </basic>
+            <basic name="hireDate" optional="false">
+                <column name="hire_date" />
+            </basic>
+
+            <version name="version">
+                <column nullable="false" />
+            </version>
+
+            <element-collection name="titles">
+                <map-key-column name="from_date" />
+                <column name="title" />
+                <collection-table name="employee_titles">
+                    <join-column name="employee_id" />
+                </collection-table>
+            </element-collection>
+        </attributes>
+    </entity>
+
+</entity-mappings>
