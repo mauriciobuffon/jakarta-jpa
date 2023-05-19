@@ -6,6 +6,14 @@
 
     <access>FIELD</access>
 
+    <named-query name="Department.findAll">
+        <query><![CDATA[ SELECT d FROM Department d ORDER BY d.code ASC ]]></query>
+    </named-query>
+
+    <named-query name="Employee.findAll">
+        <query><![CDATA[ SELECT e FROM Employee e ORDER BY e.id ASC ]]></query>
+    </named-query>
+
     <entity class="br.dev.webit.desktop.model.Department">
         <table name="departments"></table>
         <attributes>

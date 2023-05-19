@@ -7,8 +7,8 @@
     <persistence-unit name="br.dev.webit.desktop" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>br.dev.webit.desktop.model.Pessoa</class>
-        <class>br.dev.webit.desktop.model.Endereco</class>
+        <class>br.dev.webit.desktop.model.Department</class>
+        <class>br.dev.webit.desktop.model.Employee</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver" />
